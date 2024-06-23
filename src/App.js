@@ -8,7 +8,7 @@ import { reduxActions } from "./components/reduxstore/reduxstore";
 import { useSelector } from "react-redux";
 import BookTicket from "./components/bookticketpage/bookticket";
 import TopRated from "./components/toprated/toprated";
-import CustomMovie from "./components/adminpanel/custommovie";
+import CustomMovie from "./components/adminpaneladdmovies/addmoviepage";
 import Movies from "./components/movies/movies";
 function App() {
   const movieToBook = useSelector((state) => state.movie.movieToBook);
