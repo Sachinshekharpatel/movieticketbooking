@@ -22,7 +22,7 @@ const Header = () => {
         <div className="flex space-x-4 text-gray-300">
           <div
             onClick={() => {
-              navigate("/");
+              navigate("/login");
             }}
             className="hover:text-[#FE7900] flex text-[13px] mt-1 font-semibold cursor-pointer"
           >
