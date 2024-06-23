@@ -27,9 +27,19 @@ const BookTicket = () => {
     }
   }, []);
 
-  useEffect(() => {}, [selectedDate, selectedTime]);
+  const confirmBooking = async (e) => {
+    e.preventDefault();
+    if (
+      name === "" ||
+      phoneNumber === "" ||
+      email === "" ||
+      selectedTime === "" ||
+      selectedDate === ""
+    ) {
+      alert("Please fill all the fields");
+      return;
+    }
 
-  const confirmBooking = () => {
     const data = {
       name: name,
       phoneNumber: phoneNumber,
@@ -38,42 +48,34 @@ const BookTicket = () => {
       selectedDate: selectedDate,
       movie: item,
     };
-    if (!name || !phoneNumber || !email || !selectedTime || !selectedDate) {
-      alert("Please fill all the fields");
-      return;
-    } else {
+
+    try {
+      const response = await axios.post(
+        "https://dcathelone-default-rtdb.firebaseio.com/userMovieBookings.json",
+        data
+      );
+      const bookingId = response.data.name;
+
+      const realdata = {
+        ...data,
+        id: bookingId,
+      };
+
+      await axios.put(
+        `https://dcathelone-default-rtdb.firebaseio.com/userMovieBookings/${bookingId}.json`,
+        realdata
+      );
+
+      setName("");
+      setPhoneNumber("");
+      setEmail("");
+      setSelectedTime("");
+      setSelectedDate("");
+      dispatch(reduxActions.addMovie(null));
+      navigate("/");
       alert("Booking Confirmed");
-      try {
-        axios
-          .post(
-            "https://dcathelone-default-rtdb.firebaseio.com/userMovieBookings.json",
-            data
-          )
-          .then((res) => {
-            const realdata = {
-              name: name,
-              phoneNumber: phoneNumber,
-              email: email,
-              selectedTime: selectedTime,
-              selectedDate: selectedDate,
-              movie: item,
-              id: res.data.name,
-            };
-            axios.put(
-              `https://dcathelone-default-rtdb.firebaseio.com/userMovieBookings/${res.data.name}.json`,
-              realdata
-            );
-            setName("");
-            setPhoneNumber("");
-            setEmail("");
-            setSelectedTime("");
-            setSelectedDate("");
-            dispatch(reduxActions.addMovie(null));
-            navigate("/");
-          });
-      } catch (error) {
-        console.log(error);
-      }
+    } catch (error) {
+      console.error("Error during booking confirmation:", error);
     }
   };
 
@@ -98,7 +100,7 @@ const BookTicket = () => {
         </div>
       ) : (
         <div>
-          <div className="flex  md:flex-row s-center md:items-start md:justify-between w-full h-[300px] bg-gray-200 p-4 rounded-lg">
+          <div className="flex md:flex-row s-center md:items-start md:justify-between w-full h-[300px] bg-gray-200 p-4 rounded-lg">
             <div className="relative mr-2 w-[150px] h-[200px]">
               <img
                 className="w-full h-full rounded-lg"
@@ -285,40 +287,42 @@ const BookTicket = () => {
 
             {/* Booking form */}
             <div className="flex flex-col items-center w-3/4">
-              <input
-                type="text"
-                placeholder="Name"
-                className="border-2 mb-1 border-gray-400 w-full px-4 py-2"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <input
-                type="tel"
-                placeholder="Phone Number"
-                className="border-2 mb-1 border-gray-400 w-full px-4 py-2"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                className="border-2 border-gray-400 w-full px-4 py-2"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <button
-                className="bg-blue-500 mb-1 text-white px-4 py-2 rounded mt-4"
-                onClick={confirmBooking}
-                disabled={
-                  !name ||
-                  !phoneNumber ||
-                  !email ||
-                  !selectedTime ||
-                  !selectedDate
-                }
+              <form
+                type="submit"
+                className="flex flex-col items-center w-full"
+                onSubmit={confirmBooking}
               >
-                Confirm Booking
-              </button>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="border-2 mb-1 border-gray-400 w-full px-4 py-2"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  className="border-2 mb-1 border-gray-400 w-full px-4 py-2"
+                  required
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="border-2 border-gray-400 w-full px-4 py-2"
+                  value={email}
+                  required
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <button
+                  className="bg-blue-500 mb-1 hover:bg-blue-900 text-white px-4 py-2 rounded mt-4"
+                  type="submit"
+                >
+                  Confirm Booking
+                </button>
+              </form>
             </div>
           </div>
         </div>

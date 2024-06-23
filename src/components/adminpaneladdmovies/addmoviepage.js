@@ -142,22 +142,31 @@ const CustomMovie = () => {
             required
             className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
           />
-          <label className="block  mt-2 text-gray-700 font-bold mb-2">
-            Genre :
+          <label className="block mt-2 text-gray-700 font-bold mb-2">
+            Genre:
           </label>
-          <input
+          <select
             value={formData.genre}
             onChange={(e) =>
-              setFormData({ ...formData, genre: [e.target.value] })
+              setFormData({ ...formData, genre: e.target.value })
             }
             required
             className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
-          />
-          <label className="block  mt-2 text-gray-700 font-bold mb-2">
-            Year :
+          >
+            <option value="Action">Action</option>
+            <option value="Drama">Drama</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Animation">Animation</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Crime">Crime</option>
+          </select>
+          <label className="block mt-2 text-gray-700 font-bold mb-2">
+            Year:
           </label>
           <input
             type="number"
+            min="1900"
+            max="2024"
             required
             value={formData.year}
             onChange={(e) => setFormData({ ...formData, year: e.target.value })}
@@ -192,7 +201,6 @@ const CustomMovie = () => {
           </label>
           <input
             max={10}
-            min={1}
             type="number"
             required
             value={formData.rating}

@@ -46,15 +46,34 @@ const Header = () => {
         </div>
       </div>
       <div className="flex h-[80px] p-[20px] md:p-[30px] items-center bg-[#ECE9E2]">
-        <div className="md:w-1/2 mr-[30px] md:mr-0">
+        <div
+          onClick={() => navigate("/")}
+          className="md:w-1/2 mr-[30px] md:mr-0"
+        >
           <img className="ml-5" src={logoImg} alt="Logo" />
         </div>
         <div className="">
           <button
             onClick={() => navigate("/custommovie")}
-            className="text-[#FE7900] underline text-[14px] font-semibold"
+            className="uppercase text-[#FE7900] underline text-[14px] font-semibold"
           >
             Add Movie (Admin Only)
+          </button>
+        </div>
+        <div className=" md:hidden ml-3">
+          <button
+            onClick={() => navigate("/movies")}
+            className="uppercase text-[#FE7900] underline text-[14px] font-semibold"
+          >
+            Movies List{" "}
+          </button>
+        </div>
+        <div className=" md:hidden ml-3">
+          <button
+            onClick={() => navigate("/comingsoon")}
+            className="uppercase text-[#FE7900] underline text-[14px] font-semibold"
+          >
+            Coming Soon{" "}
           </button>
         </div>
         <div className="hidden md:flex w-1/2 justify-center items-center">
@@ -72,7 +91,7 @@ const Header = () => {
             className="group relative mr-[20px]"
           >
             <p className="text-[16px] font-bold uppercase cursor-pointer">
-              Added By Admin
+             Movie-List
             </p>
             <div className="absolute left-0 bottom-0 w-full h-0.5 bg-[#FE7900] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
           </div>
