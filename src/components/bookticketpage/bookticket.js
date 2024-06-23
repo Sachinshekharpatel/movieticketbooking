@@ -27,6 +27,8 @@ const BookTicket = () => {
     }
   }, []);
 
+  useEffect(() => {}, [selectedDate, selectedTime]);
+
   const confirmBooking = () => {
     const data = {
       name: name,
@@ -224,34 +226,58 @@ const BookTicket = () => {
             {/* Timing selection buttons */}
             <div className="flex justify-between w-3/4 mb-4">
               <button
-                className={`bg-orange-500 text-white font-bold py-2 px-4 rounded ${
-                  selectedTime === "12-3" ? "bg-green-500" : ""
-                }`}
-                onClick={() => setSelectedTime("12-3")}
+                className={
+                  "bg-orange-500 text-white font-bold py-2 px-4 rounded "
+                }
+                style={{
+                  backgroundColor: selectedTime === "12-3" ? "#22C55E" : "",
+                }}
+                onClick={() => {
+                  console.log("Clicked 12-3");
+                  setSelectedTime("12-3");
+                }}
               >
                 12-3
               </button>
               <button
-                className={`bg-orange-500 text-white font-bold py-2 px-4 rounded ${
-                  selectedTime === "3-6" ? "bg-green-500" : ""
-                }`}
-                onClick={() => setSelectedTime("3-6")}
+                className={
+                  "bg-orange-500 text-white font-bold py-2 px-4 rounded "
+                }
+                style={{
+                  backgroundColor: selectedTime === "3-6" ? "#22C55E" : "",
+                }}
+                onClick={() => {
+                  console.log("Clicked 3-6");
+                  setSelectedTime("3-6");
+                }}
               >
                 3-6
               </button>
               <button
-                className={`bg-orange-500 text-white font-bold py-2 px-4 rounded ${
-                  selectedTime === "6-9" ? "bg-green-500" : ""
-                }`}
-                onClick={() => setSelectedTime("6-9")}
+                className={
+                  "bg-orange-500 text-white font-bold py-2 px-4 rounded "
+                }
+                style={{
+                  backgroundColor: selectedTime === "6-9" ? "#22C55E" : "",
+                }}
+                onClick={() => {
+                  console.log("Clicked 6-9");
+                  setSelectedTime("6-9");
+                }}
               >
                 6-9
               </button>
               <button
-                className={`bg-orange-500 text-white font-bold py-2 px-4 rounded ${
-                  selectedTime === "9-12" ? "bg-green-500" : ""
-                }`}
-                onClick={() => setSelectedTime("9-12")}
+                className={
+                  "bg-orange-500 text-white font-bold py-2 px-4 rounded "
+                }
+                style={{
+                  backgroundColor: selectedTime === "9-12" ? "#22C55E" : "",
+                }}
+                onClick={() => {
+                  console.log("Clicked 9-12");
+                  setSelectedTime("9-12");
+                }}
               >
                 9-12
               </button>

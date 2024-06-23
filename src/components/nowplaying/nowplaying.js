@@ -45,6 +45,19 @@ const NowPlaying = () => {
     navigate("/bookticket");
   };
 
+  const FilterBtnHandler = (type) => {
+    try {
+      axios.get(`https://freetestapi.com/api/v1/movies`).then((response) => {
+        const dramaMovieArray = response.data.filter((item) => {
+          return item.genre[0] === type;
+        });
+        setMovieArray(dramaMovieArray);
+      });
+    } catch (error) {
+      console.log("movies data not found ", "api error");
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -70,19 +83,34 @@ const NowPlaying = () => {
           {filterOpen && (
             <div className="absolute mt-2 bg-white shadow-lg rounded z-10 right-0">
               <ul>
-                <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                <li
+                  onClick={() => FilterBtnHandler("Drama")}
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                >
                   Drama
                 </li>
-                <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                <li
+                  onClick={() => FilterBtnHandler("Action")}
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                >
                   Action
                 </li>
-                <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                <li
+                  onClick={() => FilterBtnHandler("Adventure")}
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                >
                   Adventure
                 </li>
-                <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                <li
+                  onClick={() => FilterBtnHandler("Crime")}
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                >
                   Crime
                 </li>
-                <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                <li
+                  onClick={() => FilterBtnHandler("Animation")}
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                >
                   Animation
                 </li>
               </ul>
