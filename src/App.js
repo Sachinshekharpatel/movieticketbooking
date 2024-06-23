@@ -1,16 +1,24 @@
 import "./index.css";
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import NowPlaying from "./components/nowplaying/nowplaying";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ComingSoon from "./components/comingsoon/comingsoon";
+import { reduxActions } from "./components/reduxstore/reduxstore";
+import { useSelector } from "react-redux";
+import BookTicket from "./components/bookticketpage/bookticket";
 function App() {
+  const movieToBook = useSelector((state) => state.movie.movieToBook);
+  useEffect(() => {
+    console.log(movieToBook);
+  }, []);
   return (
     <div>
       <Router>
         <Routes>
           <Route exact path="/" element={<NowPlaying />}></Route>
           <Route exact path="/comingsoon" element={<ComingSoon />}></Route>
+          <Route exact path="/bookticket" element={<BookTicket />}></Route>
         </Routes>
       </Router>
     </div>

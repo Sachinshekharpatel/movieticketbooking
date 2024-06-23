@@ -1,13 +1,17 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import movieposter from "./movieposter.png";
 import axios from "axios";
-
+import { reduxActions } from "../reduxstore/reduxstore";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const NowPlaying = () => {
   const [movieArray, setMovieArray] = useState([]);
   const [filterOpen, setFilterOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     try {
       axios.get("https://freetestapi.com/api/v1/movies").then((response) => {
@@ -35,6 +39,11 @@ const NowPlaying = () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, []);
+
+  const addMovieFunctionHandler = (movie) => {
+    dispatch(reduxActions.addMovie(movie));
+    navigate("/bookticket");
+  };
 
   return (
     <div>
@@ -162,7 +171,10 @@ const NowPlaying = () => {
               </div>
             </div>
             <div className="flex justify-center items-center">
-              <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
+              <button
+                onClick={() => addMovieFunctionHandler(item)}
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
+              >
                 Book Ticket
               </button>
             </div>
