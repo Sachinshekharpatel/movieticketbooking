@@ -7,6 +7,9 @@ import ComingSoon from "./components/comingsoon/comingsoon";
 import { reduxActions } from "./components/reduxstore/reduxstore";
 import { useSelector } from "react-redux";
 import BookTicket from "./components/bookticketpage/bookticket";
+import TopRated from "./components/toprated/toprated";
+import CustomMovie from "./components/adminpanel/custommovie";
+import Movies from "./components/movies/movies";
 function App() {
   const movieToBook = useSelector((state) => state.movie.movieToBook);
   useEffect(() => {
@@ -16,6 +19,9 @@ function App() {
     <div>
       <Router>
         <Routes>
+          <Route exact path="/movies" element={<Movies/>}></Route>
+          <Route exact path="/custommovie" element={<CustomMovie />}></Route>
+          <Route exact path="/toprated" element={<TopRated />}></Route>
           <Route exact path="/" element={<NowPlaying />}></Route>
           <Route exact path="/comingsoon" element={<ComingSoon />}></Route>
           <Route exact path="/bookticket" element={<BookTicket />}></Route>

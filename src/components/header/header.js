@@ -49,73 +49,104 @@ const Header = () => {
         <div className="md:w-1/2 mr-[30px] md:mr-0">
           <img className="ml-5" src={logoImg} alt="Logo" />
         </div>
+        <div className="">
+          <button
+            onClick={() => navigate("/custommovie")}
+            className="text-[#FE7900] underline text-[14px] font-semibold"
+          >
+            Add Movie (Admin Only)
+          </button>
+        </div>
         <div className="hidden md:flex w-1/2 justify-center items-center">
-          {["Home", "Movie", "Single Movie", "Show time", "Top rated"].map(
-            (item, index) => (
-              <div key={index} className="group relative mr-[20px]">
-                <p className="text-[16px] font-bold uppercase cursor-pointer">
-                  {item}
-                </p>
-                <div className="absolute left-0 bottom-0 w-full h-0.5 bg-[#FE7900] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                {item === "Movie" && (
-                  <div className="absolute p-2 left-0 border-b-[2px] border-[#FE7900] top-full mt-0 hidden group-hover:block bg-black shadow-lg px-4 py-3 rounded z-10">
-                    {item === "Movie" && (
-                      <>
-                        <p onClick={() => navigate('/')} className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap">
-                          Now Playing
-                        </p>
-                        <p onClick={() => navigate('/comingsoon')} className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap mt-1">
-                          Coming Soon
-                        </p>
-                      </>
-                    )}
-                  </div>
-                )}
+          <div
+            onClick={() => navigate("/")}
+            className="group relative mr-[20px]"
+          >
+            <p className="text-[16px] font-bold uppercase cursor-pointer">
+              Home
+            </p>
+            <div className="absolute left-0 bottom-0 w-full h-0.5 bg-[#FE7900] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          </div>
+          <div
+            onClick={() => navigate("/movies")}
+            className="group relative mr-[20px]"
+          >
+            <p className="text-[16px] font-bold uppercase cursor-pointer">
+              Added By Admin
+            </p>
+            <div className="absolute left-0 bottom-0 w-full h-0.5 bg-[#FE7900] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          </div>
+          {["Movie", "Show time", "Top rated"].map((item, index) => (
+            <div key={index} className="group relative mr-[20px]">
+              <p className="text-[16px] font-bold uppercase cursor-pointer">
+                {item}
+              </p>
+              <div className="absolute left-0 bottom-0 w-full h-0.5 bg-[#FE7900] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
 
-                {item === "Single Movie" && (
-                  <div className="absolute p-2 border-b-[2px] border-[#FE7900] left-0 top-full mt-0 hidden group-hover:block bg-black shadow-lg px-4 py-3 rounded z-10">
-                    {item === "Single Movie" && (
-                      <>
-                        <p className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap">
-                          Full width & Banner
-                        </p>
-                        <p className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap mt-1">
-                          Full width & No Banner
-                        </p>
-                        <p className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap">
-                          sidebar & Banner
-                        </p>
-                        <p className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap mt-1">
-                          Sidebar & No Banner
-                        </p>
-                      </>
-                    )}
-                  </div>
-                )}
+              {item === "Movie" && (
+                <div className="absolute p-2 left-0 border-b-[2px] border-[#FE7900] top-full mt-0 hidden group-hover:block bg-black shadow-lg px-4 py-3 rounded z-10">
+                  {item === "Movie" && (
+                    <>
+                      <p
+                        onClick={() => navigate("/")}
+                        className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap"
+                      >
+                        Now Playing
+                      </p>
+                      <p
+                        onClick={() => navigate("/comingsoon")}
+                        className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap mt-1"
+                      >
+                        Coming Soon
+                      </p>
+                    </>
+                  )}
+                </div>
+              )}
 
-                {item === "Show time" && (
-                  <div className=" p-2 border-b-[2px] border-[#FE7900] absolute left-0  top-full mt-0 hidden group-hover:block bg-black shadow-lg px-4 py-3 rounded z-10">
-                    {item === "Show time" && (
-                      <>
-                        <p className="text-[14px] font-semibold w-full border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer uppercase whitespace-nowrap">
-                          Daily Showtime Layout List
-                        </p>
-                        <p className="text-[14px] font-semibold w-full border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer uppercase whitespace-nowrap mt-1">
-                          Daily Showtime AJAX
-                        </p>
-                        <p className="text-[14px] font-semibold w-full border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer uppercase whitespace-nowrap mt-1">
-                          Weekly Showtime Layout List
-                        </p>
-                        <p className="text-[14px] font-semibold w-full border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer uppercase whitespace-nowrap mt-1">
-                          Weekly Showtime Table
-                        </p>
-                      </>
-                    )}
-                  </div>
-                )}
-              </div>
-            )
-          )}
+              {item === "Single Movie" && (
+                <div className="absolute p-2 border-b-[2px] border-[#FE7900] left-0 top-full mt-0 hidden group-hover:block bg-black shadow-lg px-4 py-3 rounded z-10">
+                  {item === "Single Movie" && (
+                    <>
+                      <p className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap">
+                        Full width & Banner
+                      </p>
+                      <p className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap mt-1">
+                        Full width & No Banner
+                      </p>
+                      <p className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap">
+                        sidebar & Banner
+                      </p>
+                      <p className="text-[14px] font-semibold border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer w-full whitespace-nowrap mt-1">
+                        Sidebar & No Banner
+                      </p>
+                    </>
+                  )}
+                </div>
+              )}
+
+              {item === "Show time" && (
+                <div className=" p-2 border-b-[2px] border-[#FE7900] absolute left-0  top-full mt-0 hidden group-hover:block bg-black shadow-lg px-4 py-3 rounded z-10">
+                  {item === "Show time" && (
+                    <>
+                      <p className="text-[14px] font-semibold w-full border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer uppercase whitespace-nowrap">
+                        Daily Showtime Layout List
+                      </p>
+                      <p className="text-[14px] font-semibold w-full border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer uppercase whitespace-nowrap mt-1">
+                        Daily Showtime AJAX
+                      </p>
+                      <p className="text-[14px] font-semibold w-full border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer uppercase whitespace-nowrap mt-1">
+                        Weekly Showtime Layout List
+                      </p>
+                      <p className="text-[14px] font-semibold w-full border-b-[1px] border-gray-200 text-gray-300 hover:text-yellow-500 cursor-pointer uppercase whitespace-nowrap mt-1">
+                        Weekly Showtime Table
+                      </p>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
